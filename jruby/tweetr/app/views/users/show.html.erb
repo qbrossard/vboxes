@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @user.name %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @user.lastname %>
+</p>
+
+<p>
+  <b>Handle:</b>
+  <%= @user.handle %>
+</p>
+<p>Tweets</p>
+<% @user.tweets.each do |t| %>
+  <p><i><%= t.created_at %> </i> <%= t.content %></p>
+<% end %>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

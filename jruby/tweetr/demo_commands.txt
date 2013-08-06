@@ -1,0 +1,25 @@
+cd /vagrant/
+# creates a new rails application
+jruby -S rails new tweetr
+# starts the development server
+jruby -S rails server
+# creates a scaffolding for User
+jruby -S rails generate scaffold User name:string lastname:string handle:string
+# runs the migrations to create db objects for the new user
+jruby -S rake db:migrate
+# creates a Tweet scaffold
+jruby -S rails generate scaffold Tweet content:text user:references
+# creates the db objects
+jruby -S rake db:migrate
+# install new gem (for RSpec tests)
+jruby -S bundle install
+# generate rspec support code
+jruby -S rails generate rspec:install
+# runs all specs in the project
+jruby -S rake spec
+# generates a spec test for the tweets controller
+jruby -S rails generate rspec:controller tweets
+# runs the migration on the test env. (for running specs)
+RAILS_ENV=test jruby -S rake db:migrate
+#runs the specs
+jruby -S rake spec
